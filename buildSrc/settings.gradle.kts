@@ -9,10 +9,25 @@ val kotlinVersion: String? = providers.gradleProperty("kotlin_version").orNull
 val kspVersion: String? = providers.gradleProperty("ksp_version").orNull
 val composeVersion: String? = providers.gradleProperty("compose_version").orNull
 
+pluginManagement {
+  val kotlinRepoUrl: String? = providers.gradleProperty("kotlin_repo_url").orNull
+  repositories {
+    gradlePluginPortal()
+    mavenCentral()
+    mavenLocal()
+    kotlinRepoUrl?.also { maven(it) }
+    google()
+    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+  }
+}
+
 dependencyResolutionManagement {
   repositories {
     mavenCentral()
     gradlePluginPortal()
+    mavenLocal()
+    kotlinRepoUrl?.also { maven(it) }
+    google()
   }
   versionCatalogs {
     create("libs") {

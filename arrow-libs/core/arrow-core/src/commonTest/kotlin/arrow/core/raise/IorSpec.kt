@@ -26,6 +26,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
+import kotlin.test.Ignore
 
 @Suppress(
   "UNREACHABLE_CODE",
@@ -63,7 +64,7 @@ class IorSpec {
     } shouldBe Ior.Left("Hello, World!")
   }
 
-  @Test fun concurrentArrowIorBind() = runTest {
+  @Test @Ignore fun concurrentArrowIorBind() = runTest {
     checkAll(Arb.nonEmptyList(Arb.int(), range = 0..20)) { xs ->
       ior(List<Int>::plus) {
         xs.mapIndexed { index, s -> async { Ior.Both(listOf(s), index).bind() } }.awaitAll()

@@ -1,6 +1,9 @@
+val kotlinRepoUrl: String? = providers.gradleProperty("kotlin_repo_url").orNull
+
 repositories {
   gradlePluginPortal()
   mavenCentral()
+  kotlinRepoUrl?.also { maven(it) }
   google()
 }
 
