@@ -9,7 +9,7 @@ import kotlin.coroutines.cancellation.CancellationException
  * This interface is used to enforce structural contract
  * between actual instance of [NoTrace] object and [RaiseCancellationException] class.
  */
-@JsPlainObject
+// @JsPlainObject
 internal external interface RaiseCancellationExceptionLike {
   val raised: Any?
   val raise: Raise<Any?>

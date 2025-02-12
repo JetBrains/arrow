@@ -13,6 +13,7 @@ pluginManagement {
     kotlin_repo_url?.also { maven(it) }
     google()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlinx/dev")
   }
 }
 
@@ -100,8 +101,9 @@ project(":arrow-optics").projectDir = file("arrow-libs/optics/arrow-optics")
 include("arrow-optics-reflect")
 project(":arrow-optics-reflect").projectDir = file("arrow-libs/optics/arrow-optics-reflect")
 
-include("arrow-optics-compose")
-project(":arrow-optics-compose").projectDir = file("arrow-libs/optics/arrow-optics-compose")
+// disabled for Kotlin Compatibility Testing
+// include("arrow-optics-compose")
+// project(":arrow-optics-compose").projectDir = file("arrow-libs/optics/arrow-optics-compose")
 
 include("arrow-optics-ksp-plugin")
 project(":arrow-optics-ksp-plugin").projectDir = file("arrow-libs/optics/arrow-optics-ksp-plugin")
@@ -119,27 +121,31 @@ project(":suspendapp").projectDir = file("arrow-libs/suspendapp/suspendapp")
 include("suspendapp-ktor")
 project(":suspendapp-ktor").projectDir = file("arrow-libs/suspendapp/suspendapp-ktor")
 
-include("suspendapp-test-app")
-project(":suspendapp-test-app").projectDir = file("arrow-libs/suspendapp/suspendapp-test-app")
+// include("suspendapp-test-app")
+// project(":suspendapp-test-app").projectDir = file("arrow-libs/suspendapp/suspendapp-test-app")
 
-include("suspendapp-test-runner")
-project(":suspendapp-test-runner").projectDir = file("arrow-libs/suspendapp/suspendapp-test-runner")
+// include("suspendapp-test-runner")
+// project(":suspendapp-test-runner").projectDir = file("arrow-libs/suspendapp/suspendapp-test-runner")
 
 // INTEGRATIONS
-include("arrow-core-retrofit")
-project(":arrow-core-retrofit").projectDir = file("arrow-libs/integrations/arrow-core-retrofit")
+// disabled for Kotlin Compatibility Testing
+// include("arrow-core-retrofit")
+// project(":arrow-core-retrofit").projectDir = file("arrow-libs/integrations/arrow-core-retrofit")
 
-include("arrow-core-jackson")
-project(":arrow-core-jackson").projectDir = file("arrow-libs/integrations/arrow-core-jackson")
+// disabled for Kotlin Compatibility Testing
+// include("arrow-core-jackson")
+// project(":arrow-core-jackson").projectDir = file("arrow-libs/integrations/arrow-core-jackson")
 
-include("arrow-core-serialization")
-project(":arrow-core-serialization").projectDir = file("arrow-libs/integrations/arrow-core-serialization")
+// disabled for Kotlin Compatibility Testing
+// include("arrow-core-serialization")
+// project(":arrow-core-serialization").projectDir = file("arrow-libs/integrations/arrow-core-serialization")
 
 include("arrow-resilience-ktor-client")
 project(":arrow-resilience-ktor-client").projectDir = file("arrow-libs/integrations/arrow-resilience-ktor-client")
 
-include("arrow-raise-ktor-server")
-project(":arrow-raise-ktor-server").projectDir = file("arrow-libs/integrations/arrow-raise-ktor-server")
+// disabled for Kotlin Compatibility Testing
+// include("arrow-raise-ktor-server")
+// project(":arrow-raise-ktor-server").projectDir = file("arrow-libs/integrations/arrow-raise-ktor-server")
 
 include("arrow-core-result4k")
 project(":arrow-core-result4k").projectDir = file("arrow-libs/integrations/arrow-core-result4k")

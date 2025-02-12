@@ -103,15 +103,15 @@ fun KotlinCommonCompilerOptions.commonCompilerOptions() {
 
 @OptIn(ExperimentalAbiValidation::class)
 fun AbiValidationVariantSpec.commonValidationOptions() {
-  filters {
-    excluded {
+  /* filters {
+    exclude {
       annotatedWith.addAll(
         "arrow.fx.coroutines.await.ExperimentalAwaitAllApi",
         "arrow.core.raise.ExperimentalRaiseAccumulateApi",
         "arrow.core.raise.ExperimentalTraceApi",
       )
     }
-  }
+  } */
 }
 
 if (isKotlinMultiplatform) {
