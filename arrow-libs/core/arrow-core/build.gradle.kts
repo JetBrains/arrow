@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
   id("arrow.kotlin")
-  alias(libs.plugins.kotlin.jsPlainObjects)
+  // alias(libs.plugins.kotlin.jsPlainObjects)
 }
 
 @OptIn(ExperimentalKotlinGradlePluginApi::class)

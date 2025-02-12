@@ -8,8 +8,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.dsl.abi.AbiValidationExtension
-import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
+// import org.jetbrains.kotlin.gradle.dsl.abi.AbiValidationExtension
+// import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 import java.time.Duration
 
 repositories {
@@ -114,6 +114,7 @@ fun KotlinCommonCompilerOptions.commonCompilerOptions() {
   providers.gradleProperty("kotlin_additional_cli_options").ifAvailable { freeCompilerArgs.addAll(it.split(" ")) }
 }
 
+/*
 @OptIn(ExperimentalAbiValidation::class)
 fun KotlinProjectExtension.applyValidationIfNeeded() {
   if (needsAbiValidation) {
@@ -130,11 +131,12 @@ fun KotlinProjectExtension.applyValidationIfNeeded() {
     }
   }
 }
+*/
 
 if (isKotlinMultiplatform) {
   configure<KotlinMultiplatformExtension> {
     compilerOptions { commonCompilerOptions() }
-    applyValidationIfNeeded()
+    // applyValidationIfNeeded()
 
     jvm {
       compilerOptions {
@@ -287,7 +289,7 @@ if (isKotlinJvm) {
   }
 
   configure<KotlinJvmProjectExtension> {
-    applyValidationIfNeeded()
+    // applyValidationIfNeeded()
   }
 }
 

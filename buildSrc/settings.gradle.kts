@@ -9,10 +9,25 @@ val kotlin_version: String? by settings
 val ksp_version: String? by settings
 val compose_version: String? by settings
 
+pluginManagement {
+  @Suppress("LocalVariableName") val kotlin_repo_url: String? by settings
+  repositories {
+    gradlePluginPortal()
+    mavenCentral()
+    mavenLocal()
+    kotlin_repo_url?.also { maven(it) }
+    google()
+    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+  }
+}
+
 dependencyResolutionManagement {
   repositories {
     mavenCentral()
     gradlePluginPortal()
+    mavenLocal()
+    kotlin_repo_url?.also { maven(it) }
+    google()
   }
   versionCatalogs {
     create("libs") {

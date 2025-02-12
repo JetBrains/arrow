@@ -1,6 +1,9 @@
+val kotlin_repo_url: String? = project.findProperty("kotlin_repo_url") as? String
+
 repositories {
   gradlePluginPortal()
   mavenCentral()
+  kotlin_repo_url?.also { maven(it) }
   google()
 }
 

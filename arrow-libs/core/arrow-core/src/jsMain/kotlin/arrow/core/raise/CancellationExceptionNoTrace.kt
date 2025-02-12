@@ -3,10 +3,16 @@
 
 package arrow.core.raise
 
-import js.reflect.Reflect
+import arrow.core.raise.context.raise
+
+// import js.reflect.Reflect
+
+@OptIn(DelicateRaiseApi::class)
+public class CancellationExceptionNoTrace(raised: Any?, raise: Raise<Any?>) : RaiseCancellationException(raised, raise)
 
 @OptIn(DelicateRaiseApi::class)
 internal actual fun NoTrace(raised: Any?, raise: Raise<Any?>): RaiseCancellationException {
+  /*
   val surrogateError = RaiseCancellationExceptionLike(raised, raise)
 
   val cancellationExceptionPrototype = RaiseCancellationException::class.js.asDynamic().prototype
@@ -19,4 +25,6 @@ internal actual fun NoTrace(raised: Any?, raise: Raise<Any?>): RaiseCancellation
   surrogateError.asDynamic().message = RaiseCancellationExceptionCaptured
 
   return surrogateError.unsafeCast<RaiseCancellationException>()
+  */
+  return CancellationExceptionNoTrace(raised, raise)
 }

@@ -11,8 +11,11 @@ allprojects {
 }
 
 buildscript {
+  val kotlin_repo_url: String? = project.findProperty("kotlin_repo_url") as? String
+
   repositories {
     mavenCentral()
+    kotlin_repo_url?.also { maven(it) }
     google()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
   }
@@ -29,10 +32,10 @@ plugins {
   id(libs.plugins.spotless.get().pluginId) apply false
   id(libs.plugins.animalSniffer.get().pluginId) apply false
   id(libs.plugins.dokka.get().pluginId)
-  alias(libs.plugins.kotlinx.serialization) apply false
+  // alias(libs.plugins.kotlinx.serialization) apply false
   id(libs.plugins.publish.get().pluginId) apply false
-  alias(libs.plugins.compose.jetbrains) apply false
-  alias(libs.plugins.compose.compiler) apply false
+  // alias(libs.plugins.compose.jetbrains) apply false
+  // alias(libs.plugins.compose.compiler) apply false
   alias(libs.plugins.kotlinx.knit)
   id(libs.plugins.kotlinx.kover.get().pluginId)
 }
@@ -64,17 +67,17 @@ dependencies {
   kover(projects.arrowFxStm)
   kover(projects.arrowOptics)
   kover(projects.arrowOpticsReflect)
-  kover(projects.arrowOpticsCompose)
+  // kover(projects.arrowOpticsCompose) // disabled for Kotlin Compatibility Testing
   kover(projects.arrowResilience)
   kover(projects.arrowCollectors)
   kover(projects.arrowEval)
-  kover(projects.arrowCoreJackson)
-  kover(projects.arrowCoreJackson2)
-  kover(projects.arrowCoreRetrofit)
-  kover(projects.arrowCoreSerialization)
-  kover(projects.arrowResilienceKtorClient)
-  kover(projects.arrowRaiseKtorServer)
-  kover(projects.arrowRaiseKtorServerResources)
+  // kover(projects.arrowCoreJackson) // disabled for Kotlin Compatibility Testing
+  // kover(projects.arrowCoreJackson2) // disabled for Kotlin Compatibility Testing
+  // kover(projects.arrowCoreRetrofit) // disabled for Kotlin Compatibility Testing
+  // kover(projects.arrowCoreSerialization) // disabled for Kotlin Compatibility Testing
+  kover(projects.arrowResilienceKtorClient) // disabled for Kotlin Compatibility Testing
+  // kover(projects.arrowRaiseKtorServer) // disabled for Kotlin Compatibility Testing
+  // kover(projects.arrowRaiseKtorServerResources) // disabled for Kotlin Compatibility Testing
   kover(projects.arrowCoreResult4k)
   kover(projects.arrowExceptionUtils)
   kover(projects.suspendapp)
@@ -96,15 +99,15 @@ dependencies {
   dokka(projects.arrowCollectors)
   dokka(projects.arrowOptics)
   dokka(projects.arrowOpticsReflect)
-  dokka(projects.arrowOpticsCompose)
+  // dokka(projects.arrowOpticsCompose) // disabled for Kotlin Compatibility Testing
   dokka(projects.arrowResilience)
-  dokka(projects.arrowCoreJackson)
-  dokka(projects.arrowCoreJackson2)
-  dokka(projects.arrowCoreRetrofit)
-  dokka(projects.arrowCoreSerialization)
+  // dokka(projects.arrowCoreJackson) // disabled for Kotlin Compatibility Testing
+  // dokka(projects.arrowCoreJackson2) // disabled for Kotlin Compatibility Testing
+  // dokka(projects.arrowCoreRetrofit) // disabled for Kotlin Compatibility Testing
+  // dokka(projects.arrowCoreSerialization) // disabled for Kotlin Compatibility Testing
   dokka(projects.arrowResilienceKtorClient)
-  dokka(projects.arrowRaiseKtorServer)
-  dokka(projects.arrowRaiseKtorServerResources)
+  // dokka(projects.arrowRaiseKtorServer) // disabled for Kotlin Compatibility Testing
+  // dokka(projects.arrowRaiseKtorServerResources) // disabled for Kotlin Compatibility Testing
   dokka(projects.arrowCoreResult4k)
   dokka(projects.arrowExceptionUtils)
   dokka(projects.suspendapp)
