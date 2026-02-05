@@ -9,8 +9,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.AbiValidationExtension
-import org.jetbrains.kotlin.gradle.dsl.abi.AbiValidationMultiplatformExtension
-import org.jetbrains.kotlin.gradle.dsl.abi.AbiValidationVariantSpec
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 import java.time.Duration
 
@@ -102,7 +100,7 @@ fun KotlinCommonCompilerOptions.commonCompilerOptions() {
 }
 
 @OptIn(ExperimentalAbiValidation::class)
-fun AbiValidationVariantSpec.commonValidationOptions() {
+fun AbiValidationExtension.commonValidationOptions() {
   /* filters {
     exclude {
       annotatedWith.addAll(
@@ -120,9 +118,8 @@ if (isKotlinMultiplatform) {
 
     @OptIn(ExperimentalAbiValidation::class)
     if (needsAbiValidation) {
-      extensions.configure<AbiValidationMultiplatformExtension>("abiValidation") {
+      abiValidation {
         enabled.set(true)
-        klib.enabled.set(true)
         commonValidationOptions()
       }
     }
@@ -255,7 +252,7 @@ if (isKotlinJvm) {
   configure<KotlinJvmProjectExtension> {
     @OptIn(ExperimentalAbiValidation::class)
     if (needsAbiValidation) {
-      extensions.configure<AbiValidationExtension>("abiValidation") {
+      abiValidation {
         enabled.set(true)
         commonValidationOptions()
       }
