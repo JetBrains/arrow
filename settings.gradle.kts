@@ -1,16 +1,25 @@
 @file:Suppress("LocalVariableName")
 
+import org.gradle.kotlin.dsl.filter
+
+
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "arrow"
 
 pluginManagement {
   val kotlinRepoUrl: String? = providers.gradleProperty("kotlin_repo_url").orNull
+  val kotlinVersion: String? = providers.gradleProperty("kotlin_version").orNull
   repositories {
     gradlePluginPortal()
     mavenCentral()
     mavenLocal()
-    kotlinRepoUrl?.also { maven(it) }
+    if (!kotlinRepoUrl.isNullOrEmpty() && !kotlinVersion.isNullOrEmpty()) {
+      exclusiveContent {
+        forRepository { maven(kotlinRepoUrl) }
+        filter { includeVersionByRegex("org.jetbrains.kotlin.*", ".*", kotlinVersion) }
+      }
+    }
     google()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
   }
@@ -31,7 +40,12 @@ dependencyResolutionManagement {
     mavenCentral()
     gradlePluginPortal()
     mavenLocal()
-    kotlinRepoUrl?.also { maven(it) }
+    if (!kotlinRepoUrl.isNullOrEmpty() && !kotlinVersion.isNullOrEmpty()) {
+      exclusiveContent {
+        forRepository { maven(kotlinRepoUrl) }
+        filter { includeVersionByRegex("org.jetbrains.kotlin.*", ".*", kotlinVersion) }
+      }
+    }
     google()
   }
   versionCatalogs {

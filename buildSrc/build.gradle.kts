@@ -1,9 +1,15 @@
 val kotlinRepoUrl: String? = providers.gradleProperty("kotlin_repo_url").orNull
+val kotlinVersion: String? = providers.gradleProperty("kotlin_version").orNull
 
 repositories {
   gradlePluginPortal()
   mavenCentral()
-  kotlinRepoUrl?.also { maven(it) }
+  if (!kotlinRepoUrl.isNullOrEmpty() && !kotlinVersion.isNullOrEmpty()) {
+    exclusiveContent {
+      forRepository { maven(kotlinRepoUrl) }
+      filter { includeVersionByRegex("org.jetbrains.kotlin.*", ".*", kotlinVersion) }
+    }
+  }
   google()
 }
 

@@ -11,13 +11,21 @@ allprojects {
 }
 
 buildscript {
+  /*
   val kotlinRepoUrl: String? = providers.gradleProperty("kotlin_repo_url").orNull
+  val kotlinVersion: String? = providers.gradleProperty("kotlin_version").orNull
   repositories {
     mavenCentral()
-    kotlinRepoUrl?.also { maven(it) }
+    if (!kotlinRepoUrl.isNullOrEmpty() && !kotlinVersion.isNullOrEmpty()) {
+      exclusiveContent {
+        forRepository { maven(kotlinRepoUrl) }
+        filter { includeVersionByRegex("org.jetbrains.kotlin.*", ".*", kotlinVersion) }
+      }
+    }
     google()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
   }
+  */
 
   dependencies {
     classpath(libs.kotlinx.knit)

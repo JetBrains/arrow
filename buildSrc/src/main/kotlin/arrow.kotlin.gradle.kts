@@ -12,9 +12,17 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 // import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 import java.time.Duration
 
+val kotlinRepoUrl: String? = providers.gradleProperty("kotlin_repo_url").orNull
+val kotlinVersion: String? = providers.gradleProperty("kotlin_version").orNull
+
 repositories {
   mavenCentral()
-  providers.gradleProperty("kotlin_repo_url").orNull?.also { maven(it) }
+  if (!kotlinRepoUrl.isNullOrEmpty() && !kotlinVersion.isNullOrEmpty()) {
+    exclusiveContent {
+      forRepository { maven(kotlinRepoUrl) }
+      filter { includeVersionByRegex("org.jetbrains.kotlin.*", ".*", kotlinVersion) }
+    }
+  }
   google()
   maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
